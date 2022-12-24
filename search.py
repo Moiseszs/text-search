@@ -3,6 +3,38 @@ import re
 from modules import locate
 from modules import _file_ as f
 
+
+def help():
+    print("Commands: ")
+    print('   -o   Search one string \n   -e   Search for one exactly string')
+
+     
+
+def main():
+    args = sys.argv
+    file_target = f.get_file(args)
+
+    if(args[1] == '-o'):
+        if(args[2] == '-e'):
+          locate.search_one_exact(file_target,args[3])  
+        else:
+            locate.search_one_generic(file_target, args[2])
+
+    elif(args[1] == '-h'):
+        help()
+
+    elif(args[1] == '-m'):
+        elements = f.get_elements(args)
+        locate.search_many_generic(file_target, elements)
+
+    elif(args[1] == '-b'):
+        file = f.get_file(args)
+        print(file)
+
+main()
+
+
+
 # def find_only_one(file, word):
 
 #     with open(file) as f:
@@ -22,36 +54,3 @@ from modules import _file_ as f
 #             print("Could not find")
 
 #     # DEPRECATED
-
-
-
-
-def help():
-    print("Commands: ")
-    print('   -o   Search one string \n   -e   Search for one exactly string')
-
-
-     
-
-def main():
-    args = sys.argv
-    file_target = _file_.get_file(args)
-
-    if(args[1] == '-o'):
-        if(args[2] == '-e'):
-          locate.search_one_exact(file_target,args[3])  
-        else:
-            locate.search_one_generic(file_target, args[2])
-
-    elif(args[1] == '-h'):
-        help()
-
-    elif(args[1] == '-m'):
-        elements = _file_.get_elements(args)
-        locate.search_many_generic(file_target, elements)
-
-    elif(args[1] == '-b'):
-        file = _file_.get_file(args)
-        print(file)
-
-main()

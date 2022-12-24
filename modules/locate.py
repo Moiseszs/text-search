@@ -1,4 +1,5 @@
 import modules._file_ as f
+import re
 
 def search_one_generic(file, word):
     lines = f.open_file(file)
